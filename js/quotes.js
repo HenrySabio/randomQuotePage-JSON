@@ -4,14 +4,14 @@ $( document ).ready(function() {
     const randomButton = $("footer img");
 
     //  Creates empty object to load quotes into
-    const data = [];
+    let data = [];
 
     // Fetch quote database and load
-    fetch("quotes.json")
+    fetch("js/quotes.json")
         .then(response => response.json())
         .then(jsonData => {
             data = jsonData;
-            getQuote();
+            getQuote()
         })
 
 
@@ -23,7 +23,7 @@ $( document ).ready(function() {
             const randomQuote = data[randomNumber];
             
             // Updates html with randomly chosen quote & author
-            quoteTag.html(randomQuote.quote);
+            quoteTag.html(`"${randomQuote.quote}"`);
             authorTag.html(randomQuote.author);
         } else {
             quoteTag.html("Sorry!");
@@ -31,6 +31,6 @@ $( document ).ready(function() {
         }
     }
 
-    randomButton.click( () => getQuote() );
+    randomButton.click(() => getQuote());
     
 });
