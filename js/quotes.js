@@ -7,7 +7,7 @@ $( document ).ready(function() {
     let data = [];
 
     // Fetch quote database and load
-    fetch("js/quotes.json")
+    fetch("data/quotes.json")
         .then(response => response.json())
         .then(jsonData => {
             data = jsonData;
@@ -15,7 +15,7 @@ $( document ).ready(function() {
 
             // Adjust quote font size if longer than 100 characters - spaces included
             if (jsonData.length > 100) {
-                quoteTag.css("font-size", "18px");
+                quoteTag.css("font-size", "16px");
             }
         })
 
