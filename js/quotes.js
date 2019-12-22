@@ -12,6 +12,11 @@ $( document ).ready(function() {
         .then(jsonData => {
             data = jsonData;
             getQuote()
+
+            // Adjust quote font size if longer than 100 characters - spaces included
+            if (jsonData.length > 100) {
+                quoteTag.css("font-size", "18px");
+            }
         })
 
 
