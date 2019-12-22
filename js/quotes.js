@@ -11,15 +11,22 @@ $( document ).ready(function() {
         .then(response => response.json())
         .then(jsonData => {
             data = jsonData;
+
             getQuote()
 
             // Adjust quote font size if longer than 100 characters - spaces included
             if (jsonData.length > 100) {
-                quoteTag.css("font-size", "16px");
+                quoteTag.css("font-size", "20px");
             }
         })
+    
+    // If not quote data has been load, show error
+    if (data.length == 0) {
+        quoteTag.html("Sorry!");
+        authorTag.html("No quotes are available<br>Please try again later");
+    }
 
-
+    // Returns random quote chosen from JSON database
     const getQuote = () => {
         // Checks if any data has been loaded from quote database
         if (data.length > 0) {
@@ -29,10 +36,7 @@ $( document ).ready(function() {
             
             // Updates html with randomly chosen quote & author
             quoteTag.html(`"${randomQuote.quote}"`);
-            authorTag.html(randomQuote.author);
-        } else {
-            quoteTag.html("Sorry!");
-            authorTag.html("No quotes are available");
+            authorTag.html(`— ${randomQuote.author}`);
         }
     }
 
